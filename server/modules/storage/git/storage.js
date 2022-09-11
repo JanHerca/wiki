@@ -305,7 +305,8 @@ module.exports = {
   async updated(page) {
     WIKI.logger.info(`(STORAGE/GIT) Committing updated file [${page.localeCode}] ${page.path}...`)
     let fileName = `${page.path}.${pageHelper.getFileExtension(page.contentType)}`
-    if (WIKI.config.lang.namespacing && WIKI.config.lang.code !== page.localeCode) {
+    //TODO: Check this change in server. Path always should contain locale in multi-language
+    if (WIKI.config.lang.namespacing /*&& WIKI.config.lang.code !== page.localeCode*/) {
       fileName = `${page.localeCode}/${fileName}`
     }
     const filePath = path.join(this.repoPath, fileName)
